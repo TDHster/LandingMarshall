@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#333333"/>
+  
+  <!-- Outer circle -->
+  <circle cx="200" cy="200" r="180" stroke="#FFFF00" stroke-width="6" fill="none"/>
+  
+  <!-- Inner circle -->
+  <circle cx="200" cy="200" r="120" stroke="#FFFF00" stroke-width="6" fill="none"/>
+  
+  <!-- H letter -->
+  <path d="M150 140 L150 260 M150 200 L250 200 M250 140 L250 260" 
+        stroke="#FFFF00" stroke-width="15" stroke-linecap="round" fill="none"/>
+  
+  <!-- Directional markers -->
+  <path d="M200 30 L220 70 L180 70 Z" fill="#FFFF00"/> <!-- North -->
+  <path d="M370 200 L330 220 L330 180 Z" fill="#FFFF00"/> <!-- East -->
+  <path d="M200 370 L180 330 L220 330 Z" fill="#FFFF00"/> <!-- South -->
+  <path d="M30 200 L70 180 L70 220 Z" fill="#FFFF00"/> <!-- West -->
+  
+  <!-- Safety markers -->
+  <rect x="15" y="15" width="40" height="40" fill="#FF0000" stroke="#FFFFFF" stroke-width="2"/>
+  <rect x="345" y="15" width="40" height="40" fill="#FF0000" stroke="#FFFFFF" stroke-width="2"/>
+  <rect x="15" y="345" width="40" height="40" fill="#FF0000" stroke="#FFFFFF" stroke-width="2"/>
+  <rect x="345" y="345" width="40" height="40" fill="#FF0000" stroke="#FFFFFF" stroke-width="2"/>
+</svg>

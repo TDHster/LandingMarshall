@@ -1,25 +1,29 @@
-[gd_scene load_steps=23 format=3 uid="uid://cnh2ykmuf3yi6"]
+[gd_scene load_steps=26 format=3 uid="uid://cnh2ykmuf3yi6"]
 
 [ext_resource type="Script" path="res://heli.gd" id="1_4tm3x"]
+[ext_resource type="Texture2D" uid="uid://bjkarxybib5fo" path="res://helipad-texture.svg" id="1_bioa6"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="1_vcikr"]
 [ext_resource type="PackedScene" uid="uid://gnksvgnk4njk" path="res://raven44.glb" id="3_mfdau"]
 [ext_resource type="Script" path="res://raven_44.gd" id="4_dnlas"]
 [ext_resource type="Script" path="res://marshall_character.gd" id="5_adjmo"]
 [ext_resource type="PackedScene" uid="uid://clpkok4xnt2ii" path="res://marshall 1.glb" id="5_hn7lp"]
+[ext_resource type="PackedScene" uid="uid://cv78x85c3cdnu" path="res://Ground/Ground 1.glb" id="5_u1tfu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5tdqg"]
 friction = 5.0
 rough = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u71o1"]
-size = Vector3(5, 0.1, 5)
+size = Vector3(5, 0.5, 5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvrlq"]
-albedo_color = Color(0.558129, 0.329206, 0.197582, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tp5ix"]
+albedo_texture = ExtResource("1_bioa6")
+uv1_scale = Vector3(2.828, 1.947, 2.169)
+uv1_offset = Vector3(0.089, 0.04, 0)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_rmilf"]
-material = SubResource("StandardMaterial3D_qvrlq")
-size = Vector2(5, 5)
+[sub_resource type="BoxMesh" id="BoxMesh_ao1pb"]
+material = SubResource("StandardMaterial3D_tp5ix")
+size = Vector3(5, 0.5, 5)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2p3f8"]
 
@@ -53,7 +57,11 @@ size = Vector3(100, 0.04, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dbwvd"]
 size = Vector3(0.548645, 1.8476, 0.535645)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4k5eg"]
+albedo_color = Color(0.28485, 0.28485, 0.28485, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_vmvin"]
+material = SubResource("StandardMaterial3D_4k5eg")
 size = Vector3(5, 5, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ne1oc"]
@@ -68,7 +76,8 @@ physics_material_override = SubResource("PhysicsMaterial_5tdqg")
 shape = SubResource("BoxShape3D_u71o1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Landing platform"]
-mesh = SubResource("PlaneMesh_rmilf")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.300293, 0)
+mesh = SubResource("BoxMesh_ao1pb")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_podp5")
@@ -76,7 +85,6 @@ environment = SubResource("Environment_podp5")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.859567, 0.0101403, 0.510923, -0.511023, 0.0170564, 0.859398, 1.82002e-09, -0.999803, 0.0198431, 28.3052, 18.0337, 0)
 light_color = Color(0.953701, 0.960379, 0.767852, 1)
-light_energy = 2.0
 shadow_enabled = true
 sky_mode = 1
 
@@ -110,10 +118,14 @@ shape = SubResource("CylinderShape3D_5cpr6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+visible = false
 mesh = SubResource("PlaneMesh_sfuyl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_gp1pd")
+
+[node name="Ground 1" parent="Ground" instance=ExtResource("5_u1tfu")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -0.147, 0)
 
 [node name="MarshallCharacter" type="CharacterBody3D" parent="." node_paths=PackedStringArray("animation_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.75982)
@@ -257,14 +269,14 @@ bones/64/rotation = Quaternion(1.21626e-08, -0.0118692, -1.44365e-10, 0.99993)
 [node name="AnimationPlayer" parent="MarshallCharacter/marshall 1" index="1"]
 autoplay = "Continue landing"
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D Cube" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.71481, 2.48924, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17413, 0.0333252, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D Cube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17413, -0.148468, -4.68896)
 mesh = SubResource("BoxMesh_vmvin")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D Cube"]
 shape = SubResource("BoxShape3D_ne1oc")
 
 [editable path="MarshallCharacter/marshall 1"]
